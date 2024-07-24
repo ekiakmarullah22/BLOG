@@ -1,5 +1,7 @@
 @extends('backend.layout.template')
 
+@section('title', 'All Categories - Admin')
+
 @section('content')
 
 {{-- CONTENT SECTION --}}
