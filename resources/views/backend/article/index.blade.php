@@ -17,7 +17,7 @@
     </div>
 
     <div class="mt-3">
-        <button class="my-3 btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modalCreate">Create New Article</button>
+        <a href="{{ url('articles/create') }}" class="my-3 btn btn-sm btn-success">Create New Article</a>
 
         @if ($errors->any())
             <div class="my-3">
@@ -31,15 +31,7 @@
             </div>
         @endif
 
-        @if (session('success'))
-            <div class="my-3">
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Form Message!</strong> {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    
-                  </div>
-            </div>
-        @endif
+        <div class="swal" data-swal = "{{ session('success') }}"></div>
 
         <table class="table table-striped table-bordered" id="myTable" style="width:100%">
             <thead>
@@ -67,8 +59,63 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/2.1.0/js/dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/2.1.0/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
-    
+    <script>
+        const swal = $(".swal").data("swal");
+
+        if(swal) {
+            Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: swal,
+            showConfirmButton: false,
+            timer: 1500
+            });
+        }
+
+        function deleteArticle(e) {
+            let id = e.getAttribute('data-id');
+
+            Swal.fire({
+                title: "Delete?",
+                text: "Are You Sure to Delete this Article?",
+                icon : 'warning',
+                showCancelButton : true,
+                confirmButtonColor : "#d33",
+                cancelButtonColor : "#3085d6",
+                confirmButtonText : "Delete!",
+                cancelButtonText : "Cancel",
+
+            }).then((result) => {
+                if(result.value) {
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: "Delete",
+                        url : "/articles/" + id,
+                        dataType: "json",
+                        success: function(response) {
+                            Swal.fire({
+                                position: "top-end",
+                                title: "Success",
+                                text: response.message,
+                                icon : 'success',
+                                showConfirmButton: false,
+                                timer: 1500,
+                            }).then((result) => {
+                                window.location.href = "/articles";
+                            })
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            console.log(xhr.status + "\n" + xhr.responseText + "\n" + thrownError)
+                        }
+                    });
+                }
+            })
+        }
+    </script>
 
     <script>
         $(document).ready( function () {
@@ -78,8 +125,8 @@
                 ajax: '{{ url()->current() }}',
                 columns: [
                     {
-                        data: 'id',
-                        name: 'id'
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
                     },
                     {
                         data: 'title',

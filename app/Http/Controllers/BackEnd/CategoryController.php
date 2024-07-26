@@ -46,7 +46,7 @@ class CategoryController extends Controller
     {
         //
         $data = $request->validate([
-            'title' => 'required|min:3|unique:categories,title'
+            'title' => 'required|min:3'
         ]);
 
         $data['slug'] = Str::slug($data['title']);

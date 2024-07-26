@@ -26,15 +26,7 @@
             </div>
         @endif
 
-        @if (session('success'))
-            <div class="my-3">
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Form Message!</strong> {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    
-                  </div>
-            </div>
-        @endif
+        <div class="swal" data-swal = "{{ session('success') }}"></div>
 
         <table class="table table-striped table-bordered">
             <thead>
@@ -78,5 +70,24 @@
   {{-- END CONTENT SECTION --}}
     
 @endsection
+
+@push('js')
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+<script>
+    const swal = $(".swal").data("swal");
+
+    if(swal) {
+        Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: swal,
+        showConfirmButton: false,
+        timer: 1500
+        });
+    }
+</script>
+@endpush
     
     
