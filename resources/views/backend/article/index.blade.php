@@ -33,7 +33,7 @@
 
         <div class="swal" data-swal = "{{ session('success') }}"></div>
 
-        <table class="table table-striped table-bordered" id="myTable" style="width:100%">
+        <table class="table table-striped table-bordered table-responsive" id="myTable" style="width:100%">
             <thead>
                 <tr>
                     <th>No</th>

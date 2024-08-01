@@ -28,7 +28,7 @@
 
         <div class="swal" data-swal = "{{ session('success') }}"></div>
 
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered table-responsive">
             <thead>
                 <tr>
                     <th>No</th>

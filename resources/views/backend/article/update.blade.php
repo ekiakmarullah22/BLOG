@@ -60,7 +60,7 @@
 
             <div class="mb-3">
                 <label for="desc">Description</label>
-                <textarea name="desc" id="desc" cols="30" rows="10" class="form-control @error('desc') is-invalid @enderror">{{ old('desc', $article->desc) }}</textarea>
+                <textarea id="my-editor" name="desc" class="form-control">{!! old('desc', $article->desc) !!}</textarea>
 
                 @error('desc')
                     <div class="invalid-feedback">
@@ -73,7 +73,7 @@
                 <label for="img">Image (Max: 2MB)</label>
                 <input type="file" name="img" id="img" class="form-control @error('img') is-invalid @enderror">
                 <div class="my-2">
-                    <img src="{{ asset('storage/backEnd/'.$article->img) }}" alt="" class="img-thumbnail" width="200">
+                    <img src="{{ asset('storage/backEnd/'.$article->img) }}" alt="" class="img-thumbnail img-preview" width="200">
                 </div>
 
                 @error('img')
@@ -129,4 +129,37 @@
 
 @push('js')
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+
+    <script>
+        var options = {
+        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
+        clipboard_handleImage: false
+        };
+    </script>
+
+    <script>
+    CKEDITOR.replace('my-editor', options);
+    </script>
+
+<script>
+    $("#img").change(function() {
+        previewImage(this);
+    });
+
+    function previewImage(input) {
+        if(input.files && input.files[0]){
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $(".img-preview").attr("src", e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 @endpush
