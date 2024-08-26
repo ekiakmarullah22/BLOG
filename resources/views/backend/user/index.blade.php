@@ -12,7 +12,10 @@
     </div>
 
     <div class="mt-3">
+        @if (auth()->user()->role == "admin")
         <button class="my-3 btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modalCreate">Register New User</button>
+        @endif
+        
 
         @if ($errors->any())
             <div class="my-3">
@@ -48,7 +51,17 @@
                         <td>{{ $user->created_at }}</td>
                         <td class="text-center">
                             <button class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#modalUpdate{{ $user->id }}">Edit</button>
-                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $user->id }}">Delete</button>
+
+                            @if (auth()->user()->role == "admin")
+                                @if ($user->id != auth()->user()->id)
+                                 <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $user->id }}">Delete</button>
+                                @endif
+                            @endif
+
+                            @if ($user->id === auth()->user()->id)
+                                 <span class="badge text-bg-success">Logged In</span>
+                            @endif
+                            
                         </td>
                     </tr>
                 @empty
@@ -57,14 +70,16 @@
             </tbody>
         </table>
 
+        @if (auth()->user()->role == "admin")
         {{ $users->links() }}
+        @include('backend.user.create-modal')
+        @include('backend.user.delete-modal')
+        @endif
+        
+        @include('backend.user.update-modal')
       </div>
 
-      @include('backend.user.create-modal')
-
-      @include('backend.user.update-modal')
-
-      @include('backend.user.delete-modal')
+      
 
   </main>
   {{-- END CONTENT SECTION --}}

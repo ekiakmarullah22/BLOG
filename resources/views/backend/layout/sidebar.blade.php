@@ -17,18 +17,23 @@
             Articles
           </a>
         </li>
+
+        @if (auth()->user()->role == "admin")
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" href="{{ url('categories') }}">
             <svg class="bi"><use xlink:href="#cart"/></svg>
             Categories
           </a>
         </li>
+        @endif
+
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" href="{{ url('users') }}">
             <svg class="bi"><use xlink:href="#people"/></svg>
             Users
           </a>
         </li>
+        
       </ul>
 
       

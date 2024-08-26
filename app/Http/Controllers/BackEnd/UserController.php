@@ -16,8 +16,13 @@ class UserController extends Controller
     public function index()
     {
         //
+        if(auth()->user()->role == "admin") {
+            $users = User::latest()->paginate(5);
+        } else {
+            $users = User::whereId(auth()->user()->id)->get();
+        }
         return view('backend.user.index', [
-            'users' => User::latest()->paginate(5)
+            'users' => $users
         ]);
     }
 
