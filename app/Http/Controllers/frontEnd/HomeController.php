@@ -11,9 +11,24 @@ class HomeController extends Controller
 {
     //
     public function index() {
+
+        $keyword = request()->input('keyword');
+
+        if($keyword) {
+            $articles = Article::with('Category')
+                                ->where('status', 1)
+                                ->where('title', 'LIKE', '%'. $keyword .'%')
+                                ->latest()
+                                ->simplePaginate(4);
+        } else {
+            $articles = Article::with('Category')->where('status', 1)->latest()->simplePaginate(4);
+        }
+
+
+
         return view('frontend.home.index', [
-            'latest_post' => Article::latest()->first(),
-            'articles' => Article::latest()->get(),
+            'latest_post' => Article::with('Category')->latest()->first(),
+            'articles' => $articles,
             'categories' => Category::latest()->get()
         ]);
     }
