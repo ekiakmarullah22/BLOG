@@ -10,6 +10,27 @@ use App\Http\Controllers\Controller;
 class PostController extends Controller
 {
     //
+
+    public function index() {
+
+        $keyword = request()->input('keyword');
+
+        if($keyword) {
+            $articles = Article::with('Category')
+                                ->where('status', 1)
+                                ->where('title', 'LIKE', '%'. $keyword .'%')
+                                ->latest()
+                                ->paginate(10);
+        } else {
+            $articles = Article::with('Category')->where('status', 1)->latest()->paginate(10);
+        }
+
+        return view ('frontend.post.index', [
+            'articles' => $articles,
+            'keyword' => $keyword
+        ]);
+    }
+
     public function show(string $slug) {
         return view ('frontend.post.show', [
             'article' => Article::where('slug', '=', $slug)->first(),
