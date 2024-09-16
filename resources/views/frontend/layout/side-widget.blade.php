@@ -21,7 +21,9 @@
                 @forelse ($categories as $category)
                 <div class="col-sm-6">
                     <ul class="list-unstyled mb-0">
-                        <li><a href="#!" class="nav-link">{{ $category->title }}</a></li>
+                        <li>
+                            
+                            <a href="{{ url('category/'.$category->slug) }}" class="nav-link"><i class="fa-solid fa-hashtag mx-1"></i>{{ $category->title }}</a></li>
                     </ul>
                 </div>
                 @empty

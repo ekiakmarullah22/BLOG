@@ -18,4 +18,10 @@ class HomeController extends Controller
             'categories' => Category::latest()->get()
         ]);
     }
+
+    public function about() {
+        return view('frontend.home.about', [
+            'categories' => Category::latest()->get()
+        ]);
+    }
 }

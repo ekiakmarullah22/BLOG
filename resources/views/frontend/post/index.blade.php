@@ -1,5 +1,7 @@
 @extends('frontend.layout.template')
 
+@section('title', 'Laravel Blog | Articles Page')
+
 @section('content')
 
 <!-- Page content-->
@@ -30,8 +32,12 @@
             <div class="card mb-4 shadow-sm">
                 <a href="{{ url('post/'.$article->slug) }}"><img class="card-img-top post-img img-fluid" src="{{ asset('storage/backEnd/'.$article->img) }}" alt="{{ $article->slug }}" /></a>
                 <div class="card-body card-height">
-                    <div class="small text-muted">{{ $article->created_at->format('d-m-Y') }}
-                        <a href="{{ url('category/'.$article->Category->slug) }}">{{ $article->Category->title }}</a>
+                    <div class="small text-muted">
+                        <span class="ml-3"><i class="fa-regular fa-calendar-days mx-2"></i>{{ $article->created_at->format('d-m-Y') }}</span>
+                        <span class="ml-3">
+                            <i class="fa-solid fa-hashtag"></i>
+                            <a href="{{ url('category/'.$article->category->slug) }}">{{ $article->category->title }}</a>
+                        </span>
                     </div>
                     <h2 class="card-title h4">{{ $article->title }}</h2>
                     <p class="card-text">{{ Str::limit(strip_tags($article->desc), 150, '...') }}</p>

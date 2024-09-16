@@ -32,8 +32,12 @@ class PostController extends Controller
     }
 
     public function show(string $slug) {
+
+        $article = Article::with('Category')->where('slug', '=', $slug)->firstOrFail();
+        $article->increment('views');
+
         return view ('frontend.post.show', [
-            'article' => Article::where('slug', '=', $slug)->first(),
+            'article' => $article,
             'categories' => Category::latest()->get()
         ]);
     }
