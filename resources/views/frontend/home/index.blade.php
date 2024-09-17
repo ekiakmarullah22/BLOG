@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         <!-- Blog entries-->
-        <div class="col-lg-8">
+        <div class="col-lg-8" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="300">
             <!-- Featured blog post-->
             <div class="card mb-4 shadow">
                 <a href="{{ url('post/'.$latest_post->slug) }}"><img class="card-img-top featured-img img-fluid" src="{{ asset('storage/backEnd/'.$latest_post->img) }}" alt="{{ $latest_post->slug }}" /></a>
@@ -30,7 +30,7 @@
             <div class="row">
                 @forelse ($articles as $article)
 
-                <div class="col-lg-6">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="600">
                     <!-- Blog post-->
                     <div class="card mb-4 shadow-sm">
                         <a href="{{ url('post/'.$article->slug) }}"><img class="card-img-top post-img img-fluid" src="{{ asset('storage/backEnd/'.$article->img) }}" alt="{{ $article->slug }}" /></a>

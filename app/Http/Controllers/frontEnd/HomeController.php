@@ -15,13 +15,15 @@ class HomeController extends Controller
         return view('frontend.home.index', [
             'latest_post' => Article::with('Category')->latest()->first(),
             'articles' => Article::with('Category')->where('status', 1)->latest()->simplePaginate(4),
-            'categories' => Category::latest()->get()
+            
         ]);
     }
 
     public function about() {
-        return view('frontend.home.about', [
-            'categories' => Category::latest()->get()
-        ]);
+        return view('frontend.home.about');
+    }
+
+    public function contact() {
+        return view('frontend.home.contact');
     }
 }

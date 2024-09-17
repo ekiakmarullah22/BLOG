@@ -38,7 +38,6 @@ class PostController extends Controller
 
         return view ('frontend.post.show', [
             'article' => $article,
-            'categories' => Category::latest()->get()
         ]);
     }
 }

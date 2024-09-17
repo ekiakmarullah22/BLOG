@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         <!-- Blog entries-->
-        <div class="col-lg-8">
+        <div class="col-lg-8" data-aos="fade-in" data-aos-anchor-placement="top-bottom" data-aos-delay="300">
             <!-- Featured blog post-->
             <div class="card mb-4 shadow">
                 <a href="javascript:void(0)"><img class="card-img-top featured-img img-fluid" src="{{ asset('frontend/assets/Laravel.png') }}" alt="Laravel Blog" /></a>

@@ -27,7 +27,7 @@
     <div class="row">
         @forelse ($articles as $article)
 
-        <div class="col-lg-6">
+        <div class="col-lg-6" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="300">
             <!-- Blog post-->
             <div class="card mb-4 shadow-sm">
                 <a href="{{ url('post/'.$article->slug) }}"><img class="card-img-top post-img img-fluid" src="{{ asset('storage/backEnd/'.$article->img) }}" alt="{{ $article->slug }}" /></a>
