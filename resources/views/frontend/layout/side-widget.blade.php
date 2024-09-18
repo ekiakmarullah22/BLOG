@@ -23,7 +23,9 @@
                     <ul class="list-unstyled mb-0">
                         <li>
                             
-                            <a href="{{ url('category/'.$category->slug) }}" class="nav-link"><i class="fa-solid fa-hashtag mx-1"></i>{{ $category->title }}</a></li>
+                            <a href="{{ url('category/'.$category->slug) }}" class="nav-link"><i class="fa-solid fa-hashtag mx-1"></i>{{ $category->title }} ({{ $category->articles_count }})</a>
+                        
+                        </li>
                     </ul>
                 </div>
                 @empty
