@@ -37,4 +37,31 @@
         <div class="card-header">Side Widget</div>
         <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
     </div>
+
+    <!-- Popular Post -->
+    <div class="card mb-4">
+        <div class="card-header">Popular Post</div>
+        <div class="card-body">
+            @forelse ($posts as $post)
+            
+                <div class="card my-2">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="{{ asset('storage/backEnd/'.$post->img) }}" alt="{{ $post->slug }}" class="img-fluid">
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <a href="{{ url('post/'.$post->slug) }}" class="nav-link">{{ $post->title }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <h4>Data Popular Post tidak ditemukan...</h4>
+            @endforelse
+        </div>
+    </div>
 </div>
