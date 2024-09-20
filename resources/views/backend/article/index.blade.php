@@ -42,6 +42,7 @@
                     <td>Views</td>
                     <th>Status</th>
                     <th>Published Date</th>
+                    <th>Writer</th>
                     <th class="text-center">Function</th>
                 </tr>
             </thead>
@@ -147,6 +148,10 @@
                     {
                         data: 'publish_date',
                         name: 'publish_date'
+                    },
+                    {
+                        data: 'user_id',
+                        name: 'user_id'
                     },
                     {
                         data: 'button',

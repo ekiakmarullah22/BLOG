@@ -15,13 +15,16 @@
                 <a href="{{ url('post/'.$latest_post->slug) }}"><img class="card-img-top featured-img img-fluid" src="{{ asset('storage/backEnd/'.$latest_post->img) }}" alt="{{ $latest_post->slug }}" /></a>
                 <div class="card-body">
                     <div class="small text-muted">
-                        <span class="ml-3"><i class="fa-regular fa-calendar-days mx-2"></i>{{ $latest_post->created_at->format('d-m-Y') }}</span>
+                        <span class="ml-3"><i class="fa-solid fa-calendar-days mx-2"></i>{{ $latest_post->created_at->format('d-m-Y') }}</span>
+
+                        <span class="ml-3"><i class="fa-solid fa-user mx-2"></i>{{ $latest_post->User->name }}</span>
+
                         <span class="ml-3">
                             <i class="fa-solid fa-hashtag"></i>
                             <a href="{{ url('category/'.$latest_post->category->slug) }}">{{ $latest_post->category->title }}</a>
                         </span>
                     </div>
-                    <h2 class="card-title">{{ $latest_post->title }}</h2>
+                    <h2 class="card-title"><a href="{{ url('post/'.$latest_post->slug) }}" class="nav-link">{{ $latest_post->title }}</a></h2>
                     <p class="card-text">{{ Str::limit(strip_tags($latest_post->desc), 250, '...') }}</p>
                     <a class="btn btn-primary" href="{{ url('post/'.$latest_post->slug) }}">Read more →</a>
                 </div>
@@ -37,12 +40,15 @@
                         <div class="card-body card-height">
                             <div class="small text-muted">
                                 <span class="ml-3"><i class="fa-regular fa-calendar-days mx-2"></i>{{ $article->created_at->format('d-m-Y') }}</span>
+
+                                <span class="ml-3"><i class="fa-solid fa-user mx-2"></i>{{ $article->User->name }}</span>
+
                                 <span class="ml-3">
                                     <i class="fa-solid fa-hashtag"></i>
                                     <a href="{{ url('category/'.$article->category->slug) }}">{{ $article->category->title }}</a>
                                 </span>
                             </div>
-                            <h2 class="card-title h4">{{ $article->title }}</h2>
+                            <h2 class="card-title h4"><a href="{{ url('post/'.$article->slug) }}" class="nav-link">{{ $article->title }}</a></h2>
                             <p class="card-text">{{ Str::limit(strip_tags($article->desc), 150, '...') }}</p>
                             <a class="btn btn-primary" href="{{ url('post/'.$article->slug) }}">Read more →</a>
                         </div>

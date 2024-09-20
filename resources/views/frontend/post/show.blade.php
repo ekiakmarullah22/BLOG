@@ -20,6 +20,9 @@
                             <i class="fa-solid fa-hashtag mx-2"></i>
                             <a href="{{ url('category/'.$article->category->slug) }}">{{ $article->category->title }}</a>
                         </span>
+
+                        <span class="ml-3"><i class="fa-solid fa-user mx-2"></i>{{ $article->User->name }}</span>
+                        
                         <span class="ml-3"><i class="fa-regular fa-eye mx-2"></i>{{ $article->views }} views</span>
                         
                     </div>

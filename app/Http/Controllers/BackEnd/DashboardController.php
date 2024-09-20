@@ -14,8 +14,8 @@ class DashboardController extends Controller
         return view('backend.dashboard.index', [
             'totalArticles' => Article::count(),
             'totalCategories' => Category::count(),
-            'latestArticles' => Article::with('Category')->where('status', '=', 1)->latest()->take(5)->get(),
-            'popularArticles' => Article::with('Category')->where('status', '=', 1)->orderBy('views', 'DESC')->take(5)->get()
+            'latestArticles' => Article::with(['User','Category'])->where('status', '=', 1)->latest()->take(5)->get(),
+            'popularArticles' => Article::with(['User','Category'])->where('status', '=', 1)->orderBy('views', 'DESC')->take(5)->get()
         ]);
     }
 }

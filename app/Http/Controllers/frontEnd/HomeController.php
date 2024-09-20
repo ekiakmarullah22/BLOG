@@ -13,8 +13,8 @@ class HomeController extends Controller
     public function index() {
 
         return view('frontend.home.index', [
-            'latest_post' => Article::with('Category')->latest()->first(),
-            'articles' => Article::with('Category')->where('status', 1)->latest()->simplePaginate(4),
+            'latest_post' => Article::with(['User','Category'])->latest()->first(),
+            'articles' => Article::with(['User','Category'])->where('status', 1)->latest()->simplePaginate(4),
             
         ]);
     }

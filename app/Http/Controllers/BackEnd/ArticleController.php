@@ -25,6 +25,9 @@ class ArticleController extends Controller
 
             return DataTables::of($article)
             ->addIndexColumn()
+            ->addColumn('user_id', function($article) {
+                return $article->User->name;
+            })
             ->addColumn('category_id', function($article) {
                 return $article->Category->title;
             })
@@ -46,7 +49,7 @@ class ArticleController extends Controller
             ->addColumn('title', function($article) {
                 return Str::of($article->title)->limit(20, ' ...');
             })
-            ->rawColumns(['category_id', 'status', 'button', 'title'])
+            ->rawColumns(['user_id','category_id', 'status', 'button', 'title'])
             ->make();
         }
 
@@ -77,8 +80,11 @@ class ArticleController extends Controller
         $fileName = uniqid().'.'.$file->getClientOriginalExtension();
         $file->storeAs('public/backEnd/', $fileName);
 
+       
         // save image filename to database
         $data['img'] = $fileName;
+        // set user_id
+        $data['user_id'] = auth()->user()->id;
         $data['slug'] = Str::slug($data['title']);
         
         // save all data to database
@@ -95,7 +101,7 @@ class ArticleController extends Controller
     {
         //
         return view('backend.article.show', [
-            'article' => Article::find($id)
+            'article' => Article::with(['User','Category'])->find($id)
         ]);
     }
 
@@ -130,12 +136,15 @@ class ArticleController extends Controller
             // delete old image from storage
             Storage::delete('public/backEnd/'.$request->oldImage);
 
+            
             // save image filename to database
             $data['img'] = $fileName;
         } else {
             $data['img'] = $request->oldImage;
         }
 
+        // set user_id
+        $data['user_id'] = auth()->user()->id;
         $data['slug'] = Str::slug($data['title']);
 
         Article::find($id)->update($data);

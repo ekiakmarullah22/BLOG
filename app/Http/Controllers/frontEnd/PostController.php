@@ -16,13 +16,13 @@ class PostController extends Controller
         $keyword = request()->input('keyword');
 
         if($keyword) {
-            $articles = Article::with('Category')
+            $articles = Article::with(['User','Category'])
                                 ->where('status', 1)
                                 ->where('title', 'LIKE', '%'. $keyword .'%')
                                 ->latest()
                                 ->paginate(10);
         } else {
-            $articles = Article::with('Category')->where('status', 1)->latest()->paginate(10);
+            $articles = Article::with(['User','Category'])->where('status', 1)->latest()->paginate(10);
         }
 
         return view ('frontend.post.index', [
@@ -33,7 +33,7 @@ class PostController extends Controller
 
     public function show(string $slug) {
 
-        $article = Article::with('Category')->where('slug', '=', $slug)->firstOrFail();
+        $article = Article::with(['User','Category'])->where('slug', '=', $slug)->firstOrFail();
         $article->increment('views');
 
         return view ('frontend.post.show', [

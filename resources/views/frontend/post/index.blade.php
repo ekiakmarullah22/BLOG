@@ -34,12 +34,15 @@
                 <div class="card-body card-height">
                     <div class="small text-muted">
                         <span class="ml-3"><i class="fa-regular fa-calendar-days mx-2"></i>{{ $article->created_at->format('d-m-Y') }}</span>
+
+                        <span class="ml-3"><i class="fa-solid fa-user mx-2"></i>{{ $article->User->name }}</span>
+                        
                         <span class="ml-3">
                             <i class="fa-solid fa-hashtag"></i>
                             <a href="{{ url('category/'.$article->category->slug) }}">{{ $article->category->title }}</a>
                         </span>
                     </div>
-                    <h2 class="card-title h4">{{ $article->title }}</h2>
+                    <h2 class="card-title h4"><a href="{{ url('post/'.$article->slug) }}" class="nav-link">{{ $article->title }}</a></h2>
                     <p class="card-text">{{ Str::limit(strip_tags($article->desc), 150, '...') }}</p>
                     <a class="btn btn-primary" href="{{ url('post/'.$article->slug) }}">Read more →</a>
                 </div>

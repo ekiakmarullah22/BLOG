@@ -59,6 +59,7 @@
               <th>No.</th>
               <th>Title</th>
               <th>Category</th>
+              <th>Writer</th>
               <th>Created At</th>
               <th>Action</th>
             </tr>
@@ -70,6 +71,7 @@
                   <td>{{ $loop->iteration }}</td>
                   <td>{{ $article->title }}</td>
                   <td>{{ $article->Category->title }}</td>
+                  <td>{{ $article->User->name }}</td>
                   <td>{{ $article->created_at->diffForHumans() }}</td>
                   <td>
                     <a href="{{ url('articles/'.$article->id) }}" class="btn btn-sm btn-secondary">Detail</a>
@@ -91,6 +93,7 @@
               <th>No.</th>
               <th>Title</th>
               <th>Cateory</th>
+              <th>Writer</th>
               <th>Views</th>
               <td>Action</td>
             </tr>
@@ -102,6 +105,7 @@
                   <td>{{ $loop->iteration }}</td>
                   <td>{{ $article->title }}</td>
                   <td>{{ $article->Category->title }}</td>
+                  <td>{{ $article->User->name }}</td>
                   <td>{{ $article->views }} views</td>
                   <td>
                     <a href="{{ url('articles/'.$article->id) }}" class="btn btn-sm btn-secondary">Detail</a>
