@@ -33,6 +33,8 @@
                         <a href="https://www.facebook.com/sharer.php?u={{ url()->current() }}" class="btn btn-sm btn-primary" target="__blank"><i class="fa-brands fa-facebook mx-2"></i>Facebook</a>
 
                         <a href="https://api.whatsapp.com/send?text={{ url()->current() }}" class="btn btn-sm btn-success" target="__blank"><i class="fa-brands fa-whatsapp mx-2"></i>Whatsapp</a>
+
+                        <a href="https://twitter.com/intent/tweet?text={{ url()->current() }}" class="btn btn-sm btn-info text-light" target="__blank"><i class="fa-brands fa-twitter mx-2"></i>Twitter</a>
                     </div>
                     
                 </div>

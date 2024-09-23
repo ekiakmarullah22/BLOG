@@ -27,11 +27,11 @@
                     </p>
 
                     <ul class="d-flex justify-content-center">
-                        <span class="text-dark"><a href="https://github.com/ekiakmarullah22" target="__blank" class="nav-link"><i class="fa-brands fa-github-alt mx-2"></i>Github</a></span>
+                        <span class="text-dark"><a href="{{ $config["github"] }}" target="__blank" class="nav-link"><i class="fa-brands fa-github-alt mx-2"></i>Github</a></span>
 
-                        <span class="text-primary"><a href="https://x.com/watabe_id" target="__blank" class="nav-link"><i class="fa-brands fa-twitter mx-2"></i>Twitter</a></span>
+                        <span class="text-primary"><a href="{{ $config["twitter"] }}" target="__blank" class="nav-link"><i class="fa-brands fa-twitter mx-2"></i>Twitter</a></span>
 
-                        <span class="text-danger"><a href="https://www.youtube.com/@watabeorenji5867" target="__blank" class="nav-link"><i class="fa-brands fa-youtube mx-2"></i>Youtube</a></span>
+                        <span class="text-danger"><a href="{{ $config["youtube"] }}" target="__blank" class="nav-link"><i class="fa-brands fa-youtube mx-2"></i>Youtube</a></span>
                     </ul>
                 </div>
             </div>

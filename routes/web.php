@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BackEnd\ArticleController;
 use App\Http\Controllers\BackEnd\CategoryController;
+use App\Http\Controllers\BackEnd\ConfigController;
 use App\Http\Controllers\BackEnd\DashboardController;
 use App\Http\Controllers\BackEnd\UserController;
 use App\Http\Controllers\FrontEnd\FrontCategoryController;
@@ -44,6 +45,8 @@ Route::middleware('auth')->group(function() {
     ])->middleware('UserAccess:admin');
 
     Route::resource('/users', UserController::class);
+
+    Route::resource('/config', ConfigController::class)->only(['index', 'update']);
 
 });
 
