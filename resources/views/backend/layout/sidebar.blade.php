@@ -25,7 +25,6 @@
             Categories
           </a>
         </li>
-        @endif
 
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" href="{{ url('users') }}">
@@ -33,6 +32,9 @@
             Users
           </a>
         </li>
+        @endif
+
+        
         
       </ul>
 
@@ -41,12 +43,15 @@
       <hr class="my-3">
 
       <ul class="nav flex-column mb-auto">
+        @if (auth()->user()->role == "admin")
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2" href="{{ url('/config') }}">
             <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
             Settings
           </a>
         </li>
+        @endif
+        
         <li class="nav-item">
           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf

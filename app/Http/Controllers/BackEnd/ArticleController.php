@@ -19,9 +19,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
+        $user_id = auth()->user()->id;
         //check if have ajax reques
         if(request()->ajax()) {
-            $article = Article::with('Category')->latest()->get();
+            $article = Article::with('Category')->where('user_id', $user_id)->latest()->get();
 
             return DataTables::of($article)
             ->addIndexColumn()

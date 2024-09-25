@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="Eki Akmarullah" />
+        <meta name="robots" content="index, follow" />
         @stack('meta')
         <title>@yield('title')</title>
         <!-- Favicon-->

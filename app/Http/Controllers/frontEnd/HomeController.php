@@ -26,4 +26,10 @@ class HomeController extends Controller
     public function contact() {
         return view('frontend.home.contact');
     }
+
+    public function sitemap() {
+        return response()->view('frontend.sitemap', [
+            'articles' => Article::latest()->get()
+        ])->header('Content-Type', 'text/xml');
+    }
 }

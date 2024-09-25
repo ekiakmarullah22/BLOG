@@ -1,5 +1,18 @@
 @extends('frontend.layout.template')
 
+@push('meta')
+
+<meta name="description" content="Watabe Orenji Blog merupakan project sederhana dari website blog menggunakan framework Laravel versi 10 dan template dari Bootstrap 5" />
+<meta name="keyword" content="watabe orenji, eki akmarullah, blog, laravel 10, bootstrap 5, contact watabe orenji blog" />
+<meta property="og:title" content="Laravel Blog | About Page" />
+<meta property="og:site_name" content="Watabe Orenji Blog" />
+<meta property="og:url" content="{{ url()->current() }}" />
+<meta property="og:description" content="Watabe Orenji Blog merupakan project sederhana dari website blog menggunakan framework Laravel versi 10 dan template dari Bootstrap 5" />
+<meta property="og:image" content="{{ asset('frontend/assets/Laravel.png') }}">
+
+
+@endpush
+
 @section('title', 'Laravel Blog | Contact Page')
     
 
